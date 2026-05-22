@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .calculator {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+        #result {
+            width: 90%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 5px;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+        }
+        button:hover {
+            background-color: #d4d4d4;
+        }
+        .operator {
+            background-color: #ff9500;
+            color: white;
+        }
+        .operator:hover {
+            background-color: #e08500;
+        }
+        .clear {
+            background-color: #ff3b30;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="result" readonly>
+    <div class="buttons">
+        <button class="clear" onclick="clearScreen()">C</button>
+        <button onclick="display('/')" class="operator">/</button>
+        <button onclick="display('*')" class="operator">*</button>
+        <button onclick="display('-')" class="operator">-</button>
+        
+        <button onclick="display('7')">7</button>
+        <button onclick="display('8')">8</button>
+        <button onclick="display('9')">9</button>
+        <button onclick="display('+')" class="operator">+</button>
+        
+        <button onclick="display('4')">4</button>
+        <button onclick="display('5')">5</button>
+        <button onclick="display('6')">6</button>
+        <button onclick="calculate()" class="operator" style="grid-row: span 2; height: 100%;">=</button>
+        
+        <button onclick="display('1')">1</button>
+        <button onclick="display('2')">2</button>
+        <button onclick="display('3')">3</button>
+        
+        <button onclick="display('0')" style="grid-column: span 3;">0</button>
+    </div>
+</div>
+
+<script>
+    let resultInput = document.getElementById("result");
+
+    function display(value) {
+        resultInput.value += value;
+    }
+
+    function clearScreen() {
+        resultInput.value = "";
+    }
+
+    function calculate() {
+        try {
+            resultInput.value = eval(resultInput.value);
+        } catch (err) {
+            resultInput.value = "Error";
+        }
+    }
+</script>
+
+</body>
+</html>
